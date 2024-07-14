@@ -1,0 +1,481 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\vedaa> ls
+
+
+    Directory: C:\Users\vedaa
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        28-08-2023     22:50                .android
+d-----        13-04-2024     20:29                .aws
+d-----        22-05-2024     13:51                .cache
+d-----        20-06-2024     12:11                .config
+d-----        02-07-2024     18:49                .docker
+d-----        22-12-2023     15:41                .eclipse
+d-----        28-08-2023     22:58                .jdks
+d-----        02-07-2024     19:17                .kube
+d-----        28-08-2023     23:17                .m2
+d-----        29-06-2024     14:14                .minikube
+d-----        22-12-2023     16:46                .p2
+d-----        14-07-2024     12:57                .ssh
+d-----        22-12-2023     15:17                .sts4
+d-----        17-12-2023     20:21                .VirtualBox
+d-----        20-08-2023     16:07                .vscode
+d-----        17-04-2024     22:44                AWS-Session
+d-----        09-01-2024     23:27                Cisco Packet Tracer 8.2.1
+d-----        12-03-2024     21:54                coding
+d-r---        19-08-2023     13:27                Contacts
+d-r---        08-03-2024     10:54                Desktop
+d-----        05-02-2024     11:33                Documents
+d-r---        10-07-2024     16:23                Downloads
+d-----        22-12-2023     16:44                eclipse
+d-----        22-12-2023     15:47                eclipse-workspace
+d-r---        19-08-2023     13:27                Favorites
+d-----        09-01-2024     20:02                GNS3
+d-----        23-12-2023     11:39                IdeaProjects
+d-----        08-04-2024     15:38                jenk
+d-r---        19-08-2023     13:27                Links
+d-r---        19-08-2023     13:27                Music
+dar--l        14-07-2024     12:52                OneDrive
+d-----        01-03-2024     20:42                PycharmProjects
+d-r---        19-08-2023     13:27                Saved Games
+d-r---        26-10-2023     23:12                Searches
+d-r---        13-07-2024     14:42                Videos
+d-----        16-12-2023     11:09                VirtualBox VMs
+-a----        29-02-2024     16:31           7169 -1.14-windows.xml
+-a----        02-05-2024     19:00             65 .gitconfig
+-a----        13-03-2024     11:36             15 .node_repl_history
+-a----        09-01-2024     23:09            334 .packettracer
+-a----        20-06-2024     11:50      163981824 argocd.exe
+-a----        06-05-2024     11:22        2635835 get-pip.py
+-a----        01-05-2024     13:49           5629 java_error_in_pycharm64_24068.log
+-a----        10-06-2024     22:11       52832256 kubectl.exe
+
+
+PS C:\Users\vedaa>
+PS C:\Users\vedaa> cd Downloads
+PS C:\Users\vedaa\Downloads> ssh -i sec.pem ubuntu@51.20.4.154
+Welcome to Ubuntu 24.04 LTS (GNU/Linux 6.8.0-1009-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Sun Jul 14 08:41:08 UTC 2024
+
+  System load:  0.0               Temperature:           -273.1 C
+  Usage of /:   59.7% of 6.71GB   Processes:             121
+  Memory usage: 55%               Users logged in:       0
+  Swap usage:   0%                IPv4 address for ens5: 172.31.33.151
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+16 updates can be applied immediately.
+13 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Sun Jul 14 07:27:50 2024 from 106.210.247.57
+ubuntu@ip-172-31-33-151:~$ kubectl get nodes
+NAME                                          STATUS   ROLES    AGE   VERSION
+ip-192-168-4-92.us-west-2.compute.internal    Ready    <none>   21m   v1.30.0-eks-036c24b
+ip-192-168-92-30.us-west-2.compute.internal   Ready    <none>   21m   v1.30.0-eks-036c24b
+ubuntu@ip-172-31-33-151:~$ aws eks update-kubeconfig --region us-west-2 --name three-tier-cluster
+Added new context arn:aws:eks:us-west-2:905418351108:cluster/three-tier-cluster to /home/ubuntu/.kube/config
+ubuntu@ip-172-31-33-151:~$ kubectl get nodes
+NAME                                          STATUS   ROLES    AGE   VERSION
+ip-192-168-4-92.us-west-2.compute.internal    Ready    <none>   22m   v1.30.0-eks-036c24b
+ip-192-168-92-30.us-west-2.compute.internal   Ready    <none>   21m   v1.30.0-eks-036c24b
+ubuntu@ip-172-31-33-151:~$ ls
+TWSThreeTierAppChallenge  aws  awscliv2.zip
+ubuntu@ip-172-31-33-151:~$ cd ^C
+ubuntu@ip-172-31-33-151:~$ cd TWSThreeTierAppChallenge
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge$ ls
+Application-Code  Jenkins-Pipeline-Code  Jenkins-Server-TF  Kubernetes-Manifests-file  README.md  assets
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge$ cd Kubernetes-Manifests-file
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ ls
+Backend  Database  Frontend  ingress.yaml
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ cd Database
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Database$ kubectl apply -f .
+persistentvolume/mongo-pv created
+Error from server (NotFound): error when creating "deployment.yaml": namespaces "three-tier" not found
+Error from server (NotFound): error when creating "pvc.yaml": namespaces "three-tier" not found
+Error from server (NotFound): error when creating "secrets.yaml": namespaces "three-tier" not found
+Error from server (NotFound): error when creating "service.yaml": namespaces "three-tier" not found
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Database$ kubectl create namespace three-tier
+namespace/three-tier created
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Database$ kubectl apply -f .
+deployment.apps/mongodb created
+persistentvolume/mongo-pv unchanged
+persistentvolumeclaim/mongo-volume-claim created
+secret/mongo-sec created
+service/mongodb-svc created
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Database$ kubectl get all -n three-tier
+NAME                           READY   STATUS    RESTARTS   AGE
+pod/mongodb-6f57ffcc44-mmbxn   1/1     Running   0          34s
+
+NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)     AGE
+service/mongodb-svc   ClusterIP   10.100.204.14   <none>        27017/TCP   32s
+
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/mongodb   1/1     1            1           36s
+
+NAME                                 DESIRED   CURRENT   READY   AGE
+replicaset.apps/mongodb-6f57ffcc44   1         1         1       36s
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Database$ kubectl get secret -n three-tier
+NAME        TYPE     DATA   AGE
+mongo-sec   Opaque   2      72s
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Database$ cd ..
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ ls
+Backend  Database  Frontend  ingress.yaml
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ cd Backend
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Backend$ ls
+deployment.yaml  service.yaml
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Backend$ vim deployment.yaml
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Backend$ cat deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: three-tier
+  labels:
+    role: api
+    env: demo
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      role: api
+  template:
+    metadata:
+      labels:
+        role: api
+    spec:
+      imagePullSecrets:
+      - name: ecr-registry-secret
+      containers:
+      - name: api
+        image: public.ecr.aws/p5z5g3k2/vedants-three-tier-backend:latest
+        imagePullPolicy: Always
+        env:
+          - name: MONGO_CONN_STR
+            value: mongodb://mongodb-svc:27017/todo?directConnection=true
+          - name: MONGO_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mongo-sec
+                key: username
+          - name: MONGO_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mongo-sec
+                key: password
+        ports:
+        - containerPort: 3500
+        livenessProbe:
+          httpGet:
+            path: /ok
+            port: 3500
+          initialDelaySeconds: 2
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /ok
+            port: 3500
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          successThreshold: 1
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Backend$ kubectl apply -f .
+deployment.apps/api created
+service/api created
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Backend$ kubectl get all -n three-tier
+NAME                           READY   STATUS    RESTARTS   AGE
+pod/api-79469c54dc-znxgz       0/1     Running   0          24s
+pod/mongodb-6f57ffcc44-mmbxn   1/1     Running   0          5m53s
+
+NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)     AGE
+service/api           ClusterIP   10.100.19.0     <none>        3500/TCP    24s
+service/mongodb-svc   ClusterIP   10.100.204.14   <none>        27017/TCP   5m51s
+
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/api       0/1     1            0           26s
+deployment.apps/mongodb   1/1     1            1           5m55s
+
+NAME                                 DESIRED   CURRENT   READY   AGE
+replicaset.apps/api-79469c54dc       1         1         0       27s
+replicaset.apps/mongodb-6f57ffcc44   1         1         1       5m56s
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Backend$ kubectl get all -n three-tier
+NAME                           READY   STATUS    RESTARTS   AGE
+pod/api-79469c54dc-znxgz       1/1     Running   0          64s
+pod/mongodb-6f57ffcc44-mmbxn   1/1     Running   0          6m33s
+
+NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)     AGE
+service/api           ClusterIP   10.100.19.0     <none>        3500/TCP    64s
+service/mongodb-svc   ClusterIP   10.100.204.14   <none>        27017/TCP   6m31s
+
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/api       1/1     1            1           66s
+deployment.apps/mongodb   1/1     1            1           6m35s
+
+NAME                                 DESIRED   CURRENT   READY   AGE
+replicaset.apps/api-79469c54dc       1         1         1       67s
+replicaset.apps/mongodb-6f57ffcc44   1         1         1       6m36s
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Backend$ kubectl logs api-79469c54dc-znxgz -n three-tier
+Listening on port 3500...
+Connected to database.
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Backend$ cd ..
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ cd Frontend
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ ls
+deployment.yaml  service.yaml
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ vim deployment.yaml
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ cat deployment
+cat: deployment: No such file or directory
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ cat deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: three-tier
+  labels:
+    role: frontend
+    env: demo
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      role: frontend
+  template:
+    metadata:
+      labels:
+        role: frontend
+    spec:
+      imagePullSecrets:
+      - name: ecr-registry-secret
+      containers:
+      - name: frontend
+        image: public.ecr.aws/p5z5g3k2/vedants-three-tier-frontend:latest
+        imagePullPolicy: Always
+        env:
+          - name: REACT_APP_BACKEND_URL
+            value: "http://backend.amanpathakdevops.study/api/tasks"
+        ports:
+        - containerPort: 3000
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ vim deployment.yaml
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ cat deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: three-tier
+  labels:
+    role: frontend
+    env: demo
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      role: frontend
+  template:
+    metadata:
+      labels:
+        role: frontend
+    spec:
+      imagePullSecrets:
+      - name: ecr-registry-secret
+      containers:
+      - name: frontend
+        image: public.ecr.aws/p5z5g3k2/vedants-three-tier-frontend:latest
+        imagePullPolicy: Always
+        env:
+          - name: REACT_APP_BACKEND_URL
+            value: "http://challenge.projectofvedant.com/api/tasks"
+        ports:
+        - containerPort: 3000
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ kubectl apply -f .
+deployment.apps/frontend created
+service/frontend created
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ kubectl get pods -n three-tier
+NAME                        READY   STATUS              RESTARTS   AGE
+api-79469c54dc-znxgz        1/1     Running             0          9m32s
+frontend-7954966794-fx9nc   0/1     ContainerCreating   0          25s
+mongodb-6f57ffcc44-mmbxn    1/1     Running             0          15m
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ kubectl get pods -n three-tier
+NAME                        READY   STATUS    RESTARTS   AGE
+api-79469c54dc-znxgz        1/1     Running   0          9m54s
+frontend-7954966794-fx9nc   1/1     Running   0          47s
+mongodb-6f57ffcc44-mmbxn    1/1     Running   0          15m
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ kubectl get all -n three-tier
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/api-79469c54dc-znxgz        1/1     Running   0          10m
+pod/frontend-7954966794-fx9nc   1/1     Running   0          66s
+pod/mongodb-6f57ffcc44-mmbxn    1/1     Running   0          15m
+
+NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)     AGE
+service/api           ClusterIP   10.100.19.0     <none>        3500/TCP    10m
+service/frontend      ClusterIP   10.100.200.21   <none>        3000/TCP    66s
+service/mongodb-svc   ClusterIP   10.100.204.14   <none>        27017/TCP   15m
+
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/api        1/1     1            1           10m
+deployment.apps/frontend   1/1     1            1           68s
+deployment.apps/mongodb    1/1     1            1           15m
+
+NAME                                  DESIRED   CURRENT   READY   AGE
+replicaset.apps/api-79469c54dc        1         1         1       10m
+replicaset.apps/frontend-7954966794   1         1         1       69s
+replicaset.apps/mongodb-6f57ffcc44    1         1         1       15m
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/iam_policy.json
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  8386  100  8386    0     0  23984      0 --:--:-- --:--:-- --:--:-- 24028
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
+{
+    "Policy": {
+        "PolicyName": "AWSLoadBalancerControllerIAMPolicy",
+        "PolicyId": "ANPA5FTZDUICL6HG3WKJC",
+        "Arn": "arn:aws:iam::905418351108:policy/AWSLoadBalancerControllerIAMPolicy",
+        "Path": "/",
+        "DefaultVersionId": "v1",
+        "AttachmentCount": 0,
+        "PermissionsBoundaryUsageCount": 0,
+        "IsAttachable": true,
+        "CreateDate": "2024-07-14T09:06:17+00:00",
+        "UpdateDate": "2024-07-14T09:06:17+00:00"
+    }
+}
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ eksctl utils associate-iam-oidc-provider --region=us-west-2 --cluster=three-tier-cluster --approve
+2024-07-14 09:06:48 [ℹ]  will create IAM Open ID Connect provider for cluster "three-tier-cluster" in "us-west-2"
+2024-07-14 09:06:48 [✔]  created IAM Open ID Connect provider for cluster "three-tier-cluster" in "us-west-2"
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ eksctl create iamserviceaccount --cluster=three-tier-cluster --namespace=kube-system --name=aws-load-balancer-controller --role-name AmazonEKSLoadBalancerControllerRole --attach-policy-arn=arn:aws:iam::626072240565:policy/AWSLoadBalancerControllerIAMPolicy --approve --region=us-west-2
+2024-07-14 09:07:31 [ℹ]  1 iamserviceaccount (kube-system/aws-load-balancer-controller) was included (based on the include/exclude rules)
+2024-07-14 09:07:31 [!]  serviceaccounts that exist in Kubernetes will be excluded, use --override-existing-serviceaccounts to override
+2024-07-14 09:07:31 [ℹ]  1 task: {
+    2 sequential sub-tasks: {
+        create IAM role for serviceaccount "kube-system/aws-load-balancer-controller",
+        create serviceaccount "kube-system/aws-load-balancer-controller",
+    } }2024-07-14 09:07:31 [ℹ]  building iamserviceaccount stack "eksctl-three-tier-cluster-addon-iamserviceaccount-kube-system-aws-load-balancer-controller"
+2024-07-14 09:07:32 [ℹ]  deploying stack "eksctl-three-tier-cluster-addon-iamserviceaccount-kube-system-aws-load-balancer-controller"
+2024-07-14 09:07:32 [ℹ]  waiting for CloudFormation stack "eksctl-three-tier-cluster-addon-iamserviceaccount-kube-system-aws-load-balancer-controller"
+2024-07-14 09:08:02 [ℹ]  waiting for CloudFormation stack "eksctl-three-tier-cluster-addon-iamserviceaccount-kube-system-aws-load-balancer-controller"
+2024-07-14 09:08:02 [ℹ]  1 error(s) occurred and IAM Role stacks haven't been created properly, you may wish to check CloudFormation console
+2024-07-14 09:08:02 [✖]  waiter state transitioned to Failure
+Error: failed to create iamserviceaccount(s)
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ eksctl create iamserviceaccount --cluster=three-tier-cluster --namespace=kube-system --name=aws-load-balancer-controller --role-name AmazonEKSLoadBalancerControllerRole --attach-policy-arn=arn:aws:iam::905418351108:policy/AWS
+LoadBalancerControllerIAMPolicy --approve --region=us-west-2
+2024-07-14 09:09:56 [ℹ]  1 existing iamserviceaccount(s) (kube-system/aws-load-balancer-controller) will be excluded
+2024-07-14 09:09:56 [ℹ]  1 iamserviceaccount (kube-system/aws-load-balancer-controller) was excluded (based on the include/exclude rules)
+2024-07-14 09:09:56 [!]  serviceaccounts that exist in Kubernetes will be excluded, use --override-existing-serviceaccounts to override
+2024-07-14 09:09:56 [ℹ]  no tasks
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ ls
+deployment.yaml  iam_policy.json  service.yaml
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file/Frontend$ cd ..
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ cd ..
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge$ cd ..
+ubuntu@ip-172-31-33-151:~$ sudo snap install helm --classic
+helm 3.15.3 from Snapcrafters✪ installed
+ubuntu@ip-172-31-33-151:~$ helm repo add eks https://aws.github.io/eks-charts
+"eks" has been added to your repositories
+ubuntu@ip-172-31-33-151:~$ helm repo update eks
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "eks" chart repository
+Update Complete. ⎈Happy Helming!⎈
+ubuntu@ip-172-31-33-151:~$ helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=three-tier-cluster --
+set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
+NAME: aws-load-balancer-controller
+LAST DEPLOYED: Sun Jul 14 09:15:36 2024
+NAMESPACE: kube-system
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+AWS Load Balancer controller installed!
+ubuntu@ip-172-31-33-151:~$ kubectl get deployment -n kube-system aws-load-balancer-controller
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+aws-load-balancer-controller   0/2     0            0           38s
+ubuntu@ip-172-31-33-151:~$ kubectl get deployment -n kube-system aws-load-balancer-controller
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+aws-load-balancer-controller   0/2     0            0           54s
+ubuntu@ip-172-31-33-151:~$ kubectl get deployment -n kube-system aws-load-balancer-controller
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+aws-load-balancer-controller   0/2     0            0           87s
+ubuntu@ip-172-31-33-151:~$ kubectl get deployment -n kube-system aws-load-balancer-controller
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+aws-load-balancer-controller   0/2     0            0           2m13s
+ubuntu@ip-172-31-33-151:~$ kubectl get deployment -n kube-system aws-load-balancer-controller
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+aws-load-balancer-controller   0/2     0            0           3m7s
+ubuntu@ip-172-31-33-151:~$ ls
+TWSThreeTierAppChallenge  aws  awscliv2.zip  snap
+ubuntu@ip-172-31-33-151:~$ cd TWSThreeTierAppChallenge
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge$ ls
+Application-Code  Jenkins-Pipeline-Code  Jenkins-Server-TF  Kubernetes-Manifests-file  README.md  assets
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge$ cd Kubernetes-Manifests-file
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ ls
+Backend  Database  Frontend  ingress.yaml
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ vim ingress.yaml
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ vim ingress.yaml
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ cat ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mainlb
+  namespace: three-tier
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+spec:
+  ingressClassName: alb
+  rules:
+    - host: challenge.projectofvedant.com
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api
+                port:
+                  number: 3500
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 3000
+
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ kubectl apply -f ingress.yaml
+Error from server (InternalError): error when creating "ingress.yaml": Internal error occurred: failed calling webhook "vingress.elbv2.k8s.aws": failed to call webhook: Post "https://aws-load-balancer-webhook-service.kube-system.svc:443/validate-networking-v1-ingress?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ kubectl get deployment -n kube-system aws-load-balancer-controller
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+aws-load-balancer-controller   0/2     0            0           9m1s
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ kubectl apply -f .
+Error from server (InternalError): error when creating "ingress.yaml": Internal error occurred: failed calling webhook "vingress.elbv2.k8s.aws": failed to call webhook: Post "https://aws-load-balancer-webhook-service.kube-system.svc:443/validate-networking-v1-ingress?timeout=10s": no endpoints available for service "aws-load-balancer-webhook-service"
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$ kubectl get ingress -n three-tier
+No resources found in three-tier namespace.
+ubuntu@ip-172-31-33-151:~/TWSThreeTierAppChallenge/Kubernetes-Manifests-file$
